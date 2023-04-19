@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fotografía</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css">
+    <script>
+      function abrirImagen(imagen) {
+        var ruta = imagen.src;
+        var nuevaVentana = window.open(ruta,'','width=800,height=600');
+        nuevaVentana.focus();
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Fotografía</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="inventos.html">Inventos</a></li>
+          <li><a href="programacion.html">Programación</a></li>
+          <li><a href="edicion.html">Edición</a></li>
+          <li><a href="deporte.html">Deporte</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <p>Descubre el mundo a través de nuestra lente. Capturamos los momentos más bellos e inolvidables para que los disfrutes desde cualquier lugar.</p>
+      
+      <div class="image-container">
+        <img src="Imagenes\_MG_6174.jpeg" alt="Imagen 1" onclick="abrirImagen(this);">
+        <img src="Imagenes\Playa_6163.jpeg" alt="Imagen 2" onclick="abrirImagen(this);">
+        <img src="Imagenes\Diente de leon.jpeg" alt="Imagen 3" onclick="abrirImagen(this);">
+        <img src="Imagenes\_MG_6174.jpeg" alt="Imagen 4" onclick="abrirImagen(this);">
+        <img src="Imagenes\_MG_6174.jpeg" alt="Imagen 5" onclick="abrirImagen(this);">
+        <img src="Imagenes\_MG_6174.jpeg" alt="Imagen 6" onclick="abrirImagen(this);">
+        <img src="Imagenes\_MG_6174.jpeg" alt="Imagen 7" onclick="abrirImagen(this);">
+      </div>
+    </main>
+    <footer style="background-color: #f2f2f2; color: #666; text-align: center; padding: 10px;">
+      <p>&copy; 2023 Fotografía</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .image-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .image-container img {
+    margin: 10px;
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+</style>
