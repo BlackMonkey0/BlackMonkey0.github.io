@@ -4,6 +4,7 @@ const transactionList = document.getElementById('transaction-list');
 const toggleTransactionsButton = document.getElementById('toggle-transactions');
 const noteInput = document.getElementById('note');
 const addTransactionButton = document.getElementById('add-transaction');
+const resetButton = document.getElementById('reset-button'); // Agregamos el botón de reset
 
 // Variable para almacenar los ingresos
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
@@ -50,6 +51,13 @@ addTransactionButton.addEventListener('click', () => {
         // Actualiza la lista y el total
         updateTransactions();
     }
+});
+
+// Agrega un controlador de eventos para el botón de reset
+resetButton.addEventListener('click', () => {
+    // Borra todos los ingresos y actualiza la lista y el total
+    transactions = [];
+    updateTransactions();
 });
 
 // Llama a esta función al cargar la página para mostrar cualquier ingreso previo
