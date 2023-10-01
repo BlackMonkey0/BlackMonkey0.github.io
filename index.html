@@ -3,65 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Hucha Virtual</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Reemplaza con la ruta correcta de tu archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <title>Mi Hucha</title>
 </head>
 <body>
-    <h1>Mi Hucha Virtual</h1>
-    <div class="container">
-        <form>
-            <label for="cantidad">Ingresa la cantidad de dinero:</label>
-            <input type="number" id="cantidad" placeholder="Cantidad en euros">
-            <button type="button" onclick="agregarRegistro()">Agregar</button>
-            <button type="button" onclick="resetearRegistros()">Resetear</button> <!-- Botón de reset -->
-        </form>
-        <h2>Registros</h2>
-        <ul id="lista">
-            <!-- Aquí se mostrarán los registros -->
-        </ul>
-    </div>
+    <header>
+        <h1>Mi Hucha Inteligente</h1>
+    </header>
+    <main>
+        <section id="total">
+            <h2>Total</h2>
+            <p id="total-amount">0</p>
+        </section>
+        <div id="transactions">
+            <h2>Ingresos</h2>
+            <button id="toggle-transactions">Mostrar Ingresos</button>
+            <ul id="transaction-list" class="hidden">
+                <!-- Lista de ingresos -->
+            </ul>
+            <input type="text" id="note" placeholder="Añadir nota">
+            <button id="add-transaction">Añadir</button>
+        </div>
+    </main>
     <footer>
-        &copy; 2023 Mi Hucha Virtual
+        &copy; 2023 Mi Hucha Inteligente
     </footer>
-    <script>
-        // Función para agregar un registro
-        function agregarRegistro() {
-            var cantidad = document.getElementById('cantidad').value;
-            var lista = document.getElementById('lista');
-
-            if (cantidad.trim() === '') {
-                alert('Por favor, ingresa una cantidad válida.');
-                return;
-            }
-
-            // Obtener la fecha actual
-            var fecha = new Date();
-            var fechaFormato = fecha.toLocaleDateString();
-
-            // Crear un nuevo elemento de lista y agregarlo a la lista
-            var nuevoRegistro = document.createElement('li');
-            nuevoRegistro.textContent = 'Cantidad: ' + cantidad + ' euros - Fecha: ' + fechaFormato;
-            lista.appendChild(nuevoRegistro);
-
-            // Limpiar el campo de cantidad
-            document.getElementById('cantidad').value = '';
-
-            // Guardar el registro en localStorage (aquí deberías agregar la lógica para guardar)
-            // ...
-
-            // También podrías actualizar un total aquí (si lo necesitas)
-            // ...
-        }
-
-        // Función para reiniciar los registros
-        function resetearRegistros() {
-            // Elimina todos los registros de localStorage (aquí deberías agregar la lógica para eliminar)
-            // ...
-
-            // Limpia la lista en la página
-            var lista = document.getElementById('lista');
-            lista.innerHTML = '';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
