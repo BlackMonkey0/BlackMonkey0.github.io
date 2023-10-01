@@ -1,109 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ahorros</title></title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Hucha Virtual</title>
+    <link rel="stylesheet" type="text/css" href="ruta/a/tu/estilo.css"> <!-- Reemplaza con la ruta correcta de tu archivo CSS -->
 </head>
 <body>
-  <h1>Bienvenido</h1>
-  <form>
-    <label for="cantidad">Ingresa la cantidad:</label>
-    <input type="number" id="cantidad" placeholder="Cantidad">
-    <button type="button" onclick="guardarCantidad()">Guardar</button>
-    
-  </form>
-  <h2>Registros:</h2>
-  <ul id="lista"></ul>
-  <button type="button" onclick="resetearRegistros()">Resetear</button>
+    <h1>Mi Hucha Virtual</h1>
+    <div class="container">
+        <form>
+            <label for="cantidad">Ingresa la cantidad de dinero:</label>
+            <input type="number" id="cantidad" placeholder="Cantidad en euros">
+            <button type="button" onclick="agregarRegistro()">Agregar</button>
+            <button type="button" onclick="resetearRegistros()">Resetear</button> <!-- Botón de reset -->
+        </form>
+        <h2>Registros</h2>
+        <ul id="lista">
+            <!-- Aquí se mostrarán los registros -->
+        </ul>
+    </div>
+    <footer>
+        &copy; 2023 Mi Hucha Virtual
+    </footer>
+    <script>
+        // Función para agregar un registro
+        function agregarRegistro() {
+            var cantidad = document.getElementById('cantidad').value;
+            var lista = document.getElementById('lista');
 
-<script>
-  // ... Tu código existente
+            if (cantidad.trim() === '') {
+                alert('Por favor, ingresa una cantidad válida.');
+                return;
+            }
 
-  // Función para reiniciar los registros
-  function resetearRegistros() {
-    // Elimina todos los registros de localStorage
-    localStorage.removeItem('registros');
+            // Obtener la fecha actual
+            var fecha = new Date();
+            var fechaFormato = fecha.toLocaleDateString();
 
-    // Limpia la lista en la página
-    var lista = document.getElementById('lista');
-    lista.innerHTML = '';
-  }
-</script>
-<section id="total">
-    <h2>Total</h2>
-    <p id="total-amount">0</p>
-</section>
+            // Crear un nuevo elemento de lista y agregarlo a la lista
+            var nuevoRegistro = document.createElement('li');
+            nuevoRegistro.textContent = 'Cantidad: ' + cantidad + ' euros - Fecha: ' + fechaFormato;
+            lista.appendChild(nuevoRegistro);
 
-<div id="transactions">
-    <h2>Ingresos</h2>
-    <button id="toggle-transactions">Mostrar Ingresos</button>
-    <ul id="transaction-list" class="hidden"></ul>
-    <input type="text" id="note" placeholder="Añadir nota">
-    <button id="add-transaction">Añadir</button>
-</div>
+            // Limpiar el campo de cantidad
+            document.getElementById('cantidad').value = '';
 
+            // Guardar el registro en localStorage (aquí deberías agregar la lógica para guardar)
+            // ...
 
-<div id="transactions">
-    <h2>Ingresos</h2>
-    <ul id="transaction-list"></ul>
-    <input type="text" id="note" placeholder="Añadir nota">
-    <button id="add-transaction">Añadir</button>
-</div>
+            // También podrías actualizar un total aquí (si lo necesitas)
+            // ...
+        }
 
+        // Función para reiniciar los registros
+        function resetearRegistros() {
+            // Elimina todos los registros de localStorage (aquí deberías agregar la lógica para eliminar)
+            // ...
 
-<div id="transactions">
-    <h2>Ingresos</h2>
-    <ul id="transaction-list"></ul>
-    <input type="text" id="note" placeholder="Añadir nota">
-    <button id="add-transaction">Añadir</button>
-</div>
-
-  <script>
-    
-    // Guardar la cantidad ingresada en localStorage
-    function guardarCantidad() {
-      var cantidadIngresada = document.getElementById('cantidad').value;
-      var fecha = new Date();
-
-      // Crear un objeto para almacenar la cantidad y la fecha
-      var registro = {
-        cantidad: cantidadIngresada,
-        fecha: fecha.toISOString() // Convierte la fecha a una cadena legible
-      };
-
-      // Obtener los registros existentes o inicializar un arreglo vacío
-      var registrosGuardados = JSON.parse(localStorage.getItem('registros')) || [];
-
-      // Agregar el nuevo registro al arreglo
-      registrosGuardados.push(registro);
-
-      // Guardar el arreglo actualizado en localStorage
-      localStorage.setItem('registros', JSON.stringify(registrosGuardados));
-
-      // Actualizar la lista en la página
-      mostrarRegistros();
-    }
-
-    // Mostrar la lista de registros en la página
-    function mostrarRegistros() {
-      var registrosGuardados = JSON.parse(localStorage.getItem('registros')) || [];
-      var lista = document.getElementById('lista');
-
-      // Limpiar la lista antes de mostrar los registros
-      lista.innerHTML = '';
-
-      // Iterar sobre los registros y agregarlos a la lista
-      registrosGuardados.forEach(function(registro, index) {
-        var li = document.createElement('li');
-        li.textContent = 'Cantidad: ' + registro.cantidad + ', Fecha: ' + registro.fecha;
-        lista.appendChild(li);
-      });
-    }
-
-    // Llamar a mostrarRegistros al cargar la página para mostrar los registros existentes
-    window.onload = mostrarRegistros;
-  </script>
+            // Limpia la lista en la página
+            var lista = document.getElementById('lista');
+            lista.innerHTML = '';
+        }
+    </script>
 </body>
 </html>
