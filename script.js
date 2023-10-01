@@ -2,6 +2,7 @@
 const totalAmount = document.getElementById('total-amount');
 const transactionList = document.getElementById('transaction-list');
 const toggleTransactionsButton = document.getElementById('toggle-transactions');
+const amountInput = document.getElementById('amount');
 const noteInput = document.getElementById('note');
 const addTransactionButton = document.getElementById('add-transaction');
 
@@ -15,10 +16,7 @@ function updateTransactions() {
     // Recorre los ingresos y crea elementos de lista
     transactions.forEach((transaction) => {
         const listItem = document.createElement('li');
-        const transactionText = transaction.note
-            ? `${transaction.amount}€ (${transaction.date}) - ${transaction.note}`
-            : `${transaction.amount}€ (${transaction.date})`;
-        listItem.textContent = transactionText;
+        listItem.textContent = `${transaction.amount}€ (${transaction.date})`;
         transactionList.appendChild(listItem);
     });
 
@@ -29,13 +27,18 @@ function updateTransactions() {
 
 // Agrega un controlador de eventos para el botón de mostrar/ocultar ingresos
 toggleTransactionsButton.addEventListener('click', () => {
-    const isHidden = transactionList.classList.toggle('hidden');
-    toggleTransactionsButton.textContent = isHidden ? 'Mostrar Ingresos' : 'Ocultar Ingresos';
+    if (transactionList.classList.contains('hidden')) {
+        transactionList.classList.remove('hidden');
+        toggleTransactionsButton.textContent = 'Ocultar Ingresos';
+    } else {
+        transactionList.classList.add('hidden');
+        toggleTransactionsButton.textContent = 'Mostrar Ingresos';
+    }
 });
 
 // Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
 addTransactionButton.addEventListener('click', () => {
-    const amount = parseFloat(prompt('Ingrese la cantidad en €'));
+    const amount = parseFloat(amountInput.value);
     if (!isNaN(amount)) {
         const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
         const note = noteInput.value.trim(); // Obtiene la nota
@@ -43,7 +46,8 @@ addTransactionButton.addEventListener('click', () => {
         // Agrega el ingreso a la lista
         transactions.push({ amount, date, note });
 
-        // Limpia el campo de nota
+        // Limpia los campos de cantidad y nota
+        amountInput.value = '';
         noteInput.value = '';
 
         // Actualiza la lista y el total
