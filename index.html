@@ -13,8 +13,24 @@
   </form>
   <h2>Registros:</h2>
   <ul id="lista"></ul>
+  <button type="button" onclick="resetearRegistros()">Resetear</button>
+
+<script>
+  // ... Tu código existente
+
+  // Función para reiniciar los registros
+  function resetearRegistros() {
+    // Elimina todos los registros de localStorage
+    localStorage.removeItem('registros');
+
+    // Limpia la lista en la página
+    var lista = document.getElementById('lista');
+    lista.innerHTML = '';
+  }
+</script>
 
   <script>
+    
     // Guardar la cantidad ingresada en localStorage
     function guardarCantidad() {
       var cantidadIngresada = document.getElementById('cantidad').value;
