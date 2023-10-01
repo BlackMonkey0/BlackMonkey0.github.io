@@ -59,16 +59,29 @@ button {
 /* Estilos para la sección del total */
 section:nth-child(2) {
     margin-top: 20px;
-    padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
+    padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    float: right; /* Mueve la sección a la derecha */
+    width: 30%; /* Establece un ancho fijo para la sección de ingresos */
 }
 
-/* Estilos para el pie de página */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
+/* Estilos para la lista de ingresos */
+#transaction-list {
+    list-style-type: none; /* Elimina los marcadores de lista */
+    padding: 0;
+}
+
+#transaction-list li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Estilos para el formulario y la nota */
+form {
+    padding: 20px;
+    float: left; /* Mueve el formulario a la izquierda */
+    width: 65%; /* Establece un ancho fijo para el formulario */
 }
