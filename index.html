@@ -1,68 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Hucha Virtual</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Tu Hucha</title>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Mi Hucha Virtual</h1>
-    </header>
+  <h1>Tu Hucha</h1>
+  <form>
+    <label for="cantidad">Ingresa la cantidad:</label>
+    <input type="number" id="cantidad" placeholder="Cantidad">
+    <button type="button" onclick="guardarCantidad()">Guardar</button>
+  </form>
+  <h2>Registros:</h2>
+  <ul id="lista"></ul>
 
-    <main>
-        <section>
-            <<section class="registro">
-    <h2>Registro de Ahorros:</h2>
-    <ul id="registro-lista">
-        <!-- Aquí se mostrará la lista de cantidades ingresadas -->
-    </ul>
-    <button onclick="borrarRegistro()">Borrar Registro</button>
-</section>
+  <script>
+    // Guardar la cantidad ingresada en localStorage
+    function guardarCantidad() {
+      var cantidadIngresada = document.getElementById('cantidad').value;
+      var fecha = new Date();
 
-</section>
+      // Crear un objeto para almacenar la cantidad y la fecha
+      var registro = {
+        cantidad: cantidadIngresada,
+        fecha: fecha.toISOString() // Convierte la fecha a una cadena legible
+      };
 
-            <h2>Contribuir a la Hucha</h2>
-            <!-- Aquí puedes agregar un formulario para recibir contribuciones -->
-            <form id="formularioContribucion">
-                <label for="cantidad">Cantidad a Contribuir:</label>
-                <input type="number" id="cantidad" name="cantidad" step="0.01" required>
-                <button type="submit">Contribuir</button>
-            </form>
-        </section>
+      // Obtener los registros existentes o inicializar un arreglo vacío
+      var registrosGuardados = JSON.parse(localStorage.getItem('registros')) || [];
 
-        <section>
-            <h2>Total en la Hucha</h2>
-            <p>El total actual en la hucha es: <span id="total">0.00</span> €</p>
-        </section>
-    </main>
+      // Agregar el nuevo registro al arreglo
+      registrosGuardados.push(registro);
 
-    <footer>
-        <p>&copy; 2023 Mi Hucha Virtual</p>
-    </footer>
+      // Guardar el arreglo actualizado en localStorage
+      localStorage.setItem('registros', JSON.stringify(registrosGuardados));
 
-    <script>
-        // Captura el formulario
-        const formulario = document.getElementById('formularioContribucion');
-        // Captura el campo de entrada de cantidad
-        const inputCantidad = document.getElementById('cantidad');
-        // Captura el elemento de visualización del total
-        const totalElemento = document.getElementById('total');
-        // Inicializa el total en 0
-        let total = 0;
+      // Actualizar la lista en la página
+      mostrarRegistros();
+    }
 
-        // Agrega un evento de escucha al formulario
-        formulario.addEventListener('submit', function (e) {
-            e.preventDefault(); // Evita que el formulario se envíe
-            const cantidad = parseFloat(inputCantidad.value); // Obtiene la cantidad ingresada
-            if (!isNaN(cantidad) && cantidad > 0) {
-                // Si la cantidad es válida, la suma al total y actualiza la visualización
-                total += cantidad;
-                totalElemento.textContent = total.toFixed(2); // Muestra el total con 2 decimales
-                inputCantidad.value = ''; // Limpia el campo de entrada
-            }
-        });
-    </script>
+    // Mostrar la lista de registros en la página
+    function mostrarRegistros() {
+      var registrosGuardados = JSON.parse(localStorage.getItem('registros')) || [];
+      var lista = document.getElementById('lista');
+
+      // Limpiar la lista antes de mostrar los registros
+      lista.innerHTML = '';
+
+      // Iterar sobre los registros y agregarlos a la lista
+      registrosGuardados.forEach(function(registro, index) {
+        var li = document.createElement('li');
+        li.textContent = 'Cantidad: ' + registro.cantidad + ', Fecha: ' + registro.fecha;
+        lista.appendChild(li);
+      });
+    }
+
+    // Llamar a mostrarRegistros al cargar la página para mostrar los registros existentes
+    window.onload = mostrarRegistros;
+  </script>
 </body>
 </html>
