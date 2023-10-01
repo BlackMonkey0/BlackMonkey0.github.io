@@ -2,7 +2,6 @@
 const totalAmount = document.getElementById('total-amount');
 const transactionList = document.getElementById('transaction-list');
 const toggleTransactionsButton = document.getElementById('toggle-transactions');
-const noteInput = document.getElementById('note');
 const addTransactionButton = document.getElementById('add-transaction');
 const resetButton = document.getElementById('reset-button'); // Agregamos el botón de reset
 
