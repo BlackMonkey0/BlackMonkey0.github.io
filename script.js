@@ -3,8 +3,8 @@ const totalAmount = document.getElementById('total-amount');
 const transactionList = document.getElementById('transaction-list');
 const toggleTransactionsButton = document.getElementById('toggle-transactions');
 const amountInput = document.getElementById('amount');
-const noteInput = document.getElementById('note');
 const addTransactionButton = document.getElementById('add-transaction');
+const resetButton = document.getElementById('reset-button');
 
 // Variable para almacenar los ingresos
 let transactions = [];
@@ -36,24 +36,28 @@ toggleTransactionsButton.addEventListener('click', () => {
     }
 });
 
-// Agrega un controlador de eventos para el botón de reinicio
-const resetButton = document.getElementById('reset-button');
-resetButton.addEventListener('click', () => {
-    // Reinicia la lista de transacciones y actualiza la página
-    transactions = [];
-    updateTransactions();
-});
+// Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
+addTransactionButton.addEventListener('click', () => {
+    const amount = parseFloat(amountInput.value);
+    if (!isNaN(amount)) {
+        const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
 
         // Agrega el ingreso a la lista
-        transactions.push({ amount, date, note });
+        transactions.push({ amount, date });
 
-        // Limpia los campos de cantidad y nota
+        // Limpia el campo de cantidad
         amountInput.value = '';
-        noteInput.value = '';
 
         // Actualiza la lista y el total
         updateTransactions();
     }
+});
+
+// Agrega un controlador de eventos para el botón de reinicio
+resetButton.addEventListener('click', () => {
+    // Reinicia la lista de transacciones y actualiza la página
+    transactions = [];
+    updateTransactions();
 });
 
 // Llama a esta función al cargar la página para mostrar cualquier ingreso previo
