@@ -4,11 +4,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }
 
 header {
@@ -23,32 +18,24 @@ header h1 {
 }
 
 main {
+    display: flex;
     max-width: 800px;
-    width: 90%; /* Haz que el contenido ocupe el 90% del ancho disponible */
-    margin: 20px auto; /* Centra el contenido horizontalmente */
+    margin: 0 auto;
     padding: 20px;
+    justify-content: space-between;
+}
+
+/* Estilos para la sección del total */
+#total {
     background-color: #fff;
     border: 1px solid #ddd;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenido */
-}
-
-/* Estilos para el formulario */
-form {
     padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-button {
+/* Estilos para el botón de mostrar/ocultar ingresos */
+#toggle-transactions {
     background-color: #333;
     color: #fff;
     border: none;
@@ -56,13 +43,22 @@ button {
     cursor: pointer;
 }
 
-/* Estilos para la sección del total */
-section:nth-child(2) {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* Estilo para ocultar la lista de ingresos por defecto */
+#transaction-list.hidden {
+    display: none;
+}
+
+/* Estilos para la lista de ingresos */
+#transaction-list {
+    list-style-type: none;
+    padding: 0;
+    width: 65%;
+}
+
+#transaction-list li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
 }
 
 /* Estilos para el pie de página */
