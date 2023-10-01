@@ -36,12 +36,13 @@ toggleTransactionsButton.addEventListener('click', () => {
     }
 });
 
-// Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
-addTransactionButton.addEventListener('click', () => {
-    const amount = parseFloat(amountInput.value);
-    if (!isNaN(amount)) {
-        const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
-        const note = noteInput.value.trim(); // Obtiene la nota
+// Agrega un controlador de eventos para el botón de reinicio
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', () => {
+    // Reinicia la lista de transacciones y actualiza la página
+    transactions = [];
+    updateTransactions();
+});
 
         // Agrega el ingreso a la lista
         transactions.push({ amount, date, note });
