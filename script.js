@@ -1,73 +1,45 @@
-// Obtén referencias a elementos HTML
-const cantidadInput = document.getElementById("cantidad");
-const totalAhorradoElement = document.getElementById("total-ahorrado");
-const registroLista = document.getElementById("registro-lista");
+// Obtén referencias a los elementos HTML
+const totalAmount = document.getElementById('total-amount');
+const transactionList = document.getElementById('transaction-list');
+const noteInput = document.getElementById('note');
+const addTransactionButton = document.getElementById('add-transaction');
 
-// Función para agregar la cantidad ingresada
-function agregarCantidad() {
-    const cantidad = parseFloat(cantidadInput.value);
+// Variable para almacenar los ingresos
+let transactions = [];
 
-    if (!isNaN(cantidad) && cantidad > 0) {
-        // Obten la fecha actual
-        const fecha = new Date().toLocaleDateString();
+// Función para actualizar la lista de ingresos y el total
+function updateTransactions() {
+    transactionList.innerHTML = ''; // Borra la lista actual
 
-        // Obten el registro de cantidades ingresadas del almacenamiento local
-        let registroGuardado = localStorage.getItem("registro") || "[]";
-        let registro = JSON.parse(registroGuardado);
+    // Recorre los ingresos y crea elementos de lista
+    transactions.forEach((transaction) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${transaction.amount}€ (${transaction.date})`;
+        transactionList.appendChild(listItem);
+    });
 
-        // Agrega la cantidad y la fecha al registro
-        registro.push({ cantidad, fecha });
-
-        // Guarda el registro actualizado en el almacenamiento local
-        localStorage.setItem("registro", JSON.stringify(registro));
-
-        // Calcula el total ahorrado
-        let totalAhorrado = 0;
-        for (const item of registro) {
-            totalAhorrado += item.cantidad;
-        }
-
-        // Actualiza la visualización del total ahorrado
-        totalAhorradoElement.textContent = totalAhorrado.toFixed(2);
-
-        // Agrega un registro a la lista
-        const registroActual = `${cantidad.toFixed(2)} (Fecha: ${fecha})`;
-        const listItem = document.createElement("li");
-        listItem.textContent = registroActual;
-        registroLista.appendChild(listItem);
-
-        // Borra el contenido del input
-        cantidadInput.value = "";
-    }
+    // Calcula y actualiza el total
+    const total = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+    totalAmount.textContent = `${total}€`;
 }
 
-// Función para borrar el registro almacenado
-function borrarRegistro() {
-    localStorage.removeItem("registro");
-    totalAhorradoElement.textContent = "0.00";
-    registroLista.innerHTML = ""; // Borra la lista
-}
+// Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
+addTransactionButton.addEventListener('click', () => {
+    const amount = parseFloat(prompt('Ingrese la cantidad en €'));
+    if (!isNaN(amount)) {
+        const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
+        const note = noteInput.value.trim(); // Obtiene la nota
 
-// Carga el registro almacenado desde el almacenamiento local al cargar la página
-window.addEventListener("load", () => {
-    // Obten el registro almacenado
-    let registroGuardado = localStorage.getItem("registro") || "[]";
-    let registro = JSON.parse(registroGuardado);
+        // Agrega el ingreso a la lista
+        transactions.push({ amount, date, note });
 
-    // Calcula el total ahorrado
-    let totalAhorrado = 0;
-    for (const item of registro) {
-        totalAhorrado += item.cantidad;
-    }
+        // Limpia el campo de nota
+        noteInput.value = '';
 
-    // Actualiza la visualización del total ahorrado
-    totalAhorradoElement.textContent = totalAhorrado.toFixed(2);
-
-    // Muestra la lista de registros
-    for (const item of registro) {
-        const registroActual = `${item.cantidad.toFixed(2)} (Fecha: ${item.fecha})`;
-        const listItem = document.createElement("li");
-        listItem.textContent = registroActual;
-        registroLista.appendChild(listItem);
+        // Actualiza la lista y el total
+        updateTransactions();
     }
 });
+
+// Llama a esta función al cargar la página para mostrar cualquier ingreso previo
+updateTransactions();
