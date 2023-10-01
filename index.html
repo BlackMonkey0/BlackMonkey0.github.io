@@ -1,28 +1,58 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Black Monkey</title>
-    <link rel="stylesheet" type="text/css" href="Styles.css">
-     <link rel="icon" href="Captura.ico"/>
-  </head>
-  <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Hucha Virtual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <header>
-      <h1>Black Monkey</h1>
-      <nav>
-        <ul>
-          <li><a href="fotografia.html">Fotografía</a></li>
-          <li><a href="inventos.html">Inventos</a></li>
-          <li><a href="programacion.html">Programación</a></li>
-          <li><a href="edicion.html">Edición</a></li>
-          <li><a href="deporte.html">Deporte</a></li>
-        </ul>
-      </nav>
+        <h1>Bienvenido a Mi Hucha Virtual</h1>
     </header>
+
     <main>
-      <p>Bienvenidos a mi sitio web. Aquí podrás encontrar información sobre varios temas que me interesan.</p>
+        <section>
+            <h2>Contribuir a la Hucha</h2>
+            <!-- Aquí puedes agregar un formulario para recibir contribuciones -->
+            <form id="formularioContribucion">
+                <label for="cantidad">Cantidad a Contribuir:</label>
+                <input type="number" id="cantidad" name="cantidad" step="0.01" required>
+                <button type="submit">Contribuir</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Total en la Hucha</h2>
+            <p>El total actual en la hucha es: <span id="total">0.00</span> €</p>
+        </section>
     </main>
+
     <footer>
-      <p>&copy; [2023] [BlackMonkey]. Todos los derechos reservados.</p>
+        <p>&copy; 2023 Mi Hucha Virtual</p>
     </footer>
-  </body>
+
+    <script>
+        // Captura el formulario
+        const formulario = document.getElementById('formularioContribucion');
+        // Captura el campo de entrada de cantidad
+        const inputCantidad = document.getElementById('cantidad');
+        // Captura el elemento de visualización del total
+        const totalElemento = document.getElementById('total');
+        // Inicializa el total en 0
+        let total = 0;
+
+        // Agrega un evento de escucha al formulario
+        formulario.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita que el formulario se envíe
+            const cantidad = parseFloat(inputCantidad.value); // Obtiene la cantidad ingresada
+            if (!isNaN(cantidad) && cantidad > 0) {
+                // Si la cantidad es válida, la suma al total y actualiza la visualización
+                total += cantidad;
+                totalElemento.textContent = total.toFixed(2); // Muestra el total con 2 decimales
+                inputCantidad.value = ''; // Limpia el campo de entrada
+            }
+        });
+    </script>
+</body>
 </html>
