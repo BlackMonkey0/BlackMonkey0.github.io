@@ -10,8 +10,7 @@ let transactions = [];
 
 // Función para actualizar la lista de ingresos y el total
 function updateTransactions() {
-    // Borra la lista actual
-    transactionList.innerHTML = '';
+    transactionList.innerHTML = ''; // Borra la lista actual
 
     // Recorre los ingresos y crea elementos de lista
     transactions.forEach((transaction) => {
