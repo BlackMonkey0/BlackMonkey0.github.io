@@ -1,6 +1,7 @@
 // Obtén referencias a los elementos HTML
 const totalAmount = document.getElementById('total-amount');
-const transactionList = document.getElementById('transaction-list');
+consconst transactionList = document.getElementById('transaction-list');
+const toggleTransactionsButton = document.getElementById('toggle-transactions');
 const noteInput = document.getElementById('note');
 const addTransactionButton = document.getElementById('add-transaction');
 
@@ -22,6 +23,16 @@ function updateTransactions() {
     const total = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
     totalAmount.textContent = `${total}€`;
 }
+// Agrega un controlador de eventos para el botón de mostrar/ocultar ingresos
+toggleTransactionsButton.addEventListener('click', () => {
+    if (transactionList.classList.contains('hidden')) {
+        transactionList.classList.remove('hidden');
+        toggleTransactionsButton.textContent = 'Ocultar Ingresos';
+    } else {
+        transactionList.classList.add('hidden');
+        toggleTransactionsButton.textContent = 'Mostrar Ingresos';
+    }
+});
 
 // Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
 addTransactionButton.addEventListener('click', () => {
@@ -43,3 +54,5 @@ addTransactionButton.addEventListener('click', () => {
 
 // Llama a esta función al cargar la página para mostrar cualquier ingreso previo
 updateTransactions();
+
+
