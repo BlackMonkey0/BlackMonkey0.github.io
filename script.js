@@ -3,7 +3,8 @@ const totalAmount = document.getElementById('total-amount');
 const transactionList = document.getElementById('transaction-list');
 const toggleTransactionsButton = document.getElementById('toggle-transactions');
 const addTransactionButton = document.getElementById('add-transaction');
-const resetButton = document.getElementById('reset-button'); // Agregamos el botón de reset
+const resetButton = document.getElementById('reset-button');
+const amountInput = document.getElementById('amount'); // Obtén la referencia al campo de entrada de cantidad
 
 // Variable para almacenar los ingresos
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
@@ -40,7 +41,7 @@ toggleTransactionsButton.addEventListener('click', () => {
 
 // Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
 addTransactionButton.addEventListener('click', () => {
-    const amount = parseFloat(prompt('Ingrese la cantidad en €'));
+    const amount = parseFloat(amountInput.value); // Obtén la cantidad ingresada desde el campo de entrada
     if (!isNaN(amount)) {
         const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
 
@@ -49,6 +50,9 @@ addTransactionButton.addEventListener('click', () => {
 
         // Actualiza la lista y el total
         updateTransactions();
+
+        // Limpia el campo de entrada de cantidad
+        amountInput.value = '';
     }
 });
 
