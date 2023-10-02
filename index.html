@@ -4,33 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Mi Hucha</title>
+    <title>Hoja de Cálculo</title>
 </head>
 <body>
     <header>
-        <h1>Mi Hucha Inteligente</h1>
+        <h1>Hoja de Cálculo</h1>
     </header>
     <main>
-        <section id="total">
-            <h2>Total</h2>
-            <p id="total-amount">0€</p>
-        </section>
-        <form id="transaction-form">
-            <label for="amount">Cantidad en €:</label>
-            <input type="number" id="amount" placeholder="Ingrese la cantidad">
-            <button type="submit">Añadir</button>
-        </form>
-        <section id="transactions">
-            <h2>Ingresos</h2>
-            <ul id="transaction-list">
-                <!-- Lista de ingresos -->
-            </ul>
-        </section>
+        <table id="spreadsheet">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Columna 1</th>
+                    <th>Columna 2</th>
+                    <th>Columna 3</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Fila 1</th>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td id="total-1">0</td>
+                </tr>
+                <tr>
+                    <th>Fila 2</th>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td id="total-2">0</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
     </main>
     <footer>
-        &copy; 2023 Mi Hucha Inteligente
+        &copy; 2023 Mi Hoja de Cálculo
     </footer>
     <script src="script.js"></script>
 </body>
 </html>
-
