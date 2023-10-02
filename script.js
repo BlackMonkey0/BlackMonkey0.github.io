@@ -1,13 +1,15 @@
 // Obtén referencias a los elementos HTML
 const totalAmount = document.getElementById('total-amount');
-const amountInput = document.getElementById('amount');
+const amountInput = document.getElementById('amount'); // Modificamos la referencia
+const addTransactionButton = document.getElementById('add-transaction');
 const resetButton = document.getElementById('reset-button');
 
-// Variable para almacenar el total
-let total = 0;
+// Variable para almacenar los ingresos
+let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 // Función para actualizar el total
 function updateTotal() {
+    const total = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
     totalAmount.textContent = `${total}€`;
 }
 
@@ -15,14 +17,15 @@ function updateTotal() {
 addTransactionButton.addEventListener('click', () => {
     const amount = parseFloat(amountInput.value);
     if (!isNaN(amount)) {
-        total += amount;
+        transactions.push({ amount });
+        amountInput.value = ''; // Limpiar el campo de entrada
         updateTotal();
     }
 });
 
 // Agrega un controlador de eventos para el botón de reset
 resetButton.addEventListener('click', () => {
-    total = 0;
+    transactions = [];
     updateTotal();
 });
 
