@@ -14,14 +14,12 @@ function updateTransactions() {
 
     transactions.forEach((transaction) => {
         const listItem = document.createElement('li');
-        // Aquí se muestra la cantidad y la fecha, pero no en el totalAmount
         listItem.textContent = `${transaction.amount}€ (${transaction.date})`;
         transactionList.appendChild(listItem);
     });
 
     // Calcula y actualiza el total
     const total = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
-    // Mostrar el total en el elemento totalAmount
     totalAmount.textContent = `${total}€`;
 
     // Almacena los ingresos en el almacenamiento local
