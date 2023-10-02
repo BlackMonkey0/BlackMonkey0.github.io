@@ -5,16 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Historial de Ingresos</title>
+    <style>
+        /* Agrega estilos CSS específicos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Historial de Ingresos</h1>
     </header>
     <main>
-        <ul id="transaction-list">
-            <!-- Lista de ingresos (se mostrará aquí) -->
-        </ul>
-        <a href="index.html">Volver a la Página Principal</a> <!-- Enlace de regreso a la página principal -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cantidad (€)</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-list">
+                <!-- Aquí se mostrarán las filas de la tabla -->
+            </tbody>
+        </table>
+        <a href="index.html">Volver a la Página Principal</a>
     </main>
     <footer>
         &copy; 2023 Mi Hucha Inteligente
