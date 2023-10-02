@@ -1,71 +1,17 @@
-// Obtén referencias a los elementos HTML
-const totalAmount = document.getElementById('total-amount');
-const amountInput = document.getElementById('amount');
-const addTransactionButton = document.getElementById('add-transaction');
-const resetButton = document.getElementById('reset-button');
-
-// Variable para almacenar los ingresos
-let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
- 
-// Función para calcular el total
-function calculateTotal() {
-    return transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
-}
-
-// Función para actualizar el total y almacenarlo en localStorage
-function updateTotal() {
-    const total = calculateTotal();
-    totalAmount.textContent = `${total}€`;
-    localStorage.setItem('total', total);
-}
-
-// Función para actualizar la lista de ingresos
-function updateTransactionList() {
-    const transactionList = document.getElementById('transaction-list');
-    transactionList.innerHTML = '';
-
-    transactions.forEach((transaction) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${transaction.amount}€ (${transaction.date})`;
-        transactionList.appendChild(listItem);
-    });
-}
-
-// Agrega un nuevo ingreso cuando se hace clic en el botón "Añadir"
-addTransactionButton.addEventListener('click', () => {
-    const amount = parseFloat(amountInput.value);
-    if (!isNaN(amount)) {
-        const date = new Date().toLocaleDateString();
-        transactions.push({ amount, date });
-
-        // Actualiza el total
-        updateTotal();
-
-        // Actualiza la lista de ingresos
-        updateTransactionList();
-
-        // Limpia el campo de cantidad
-        amountInput.value = '';
+document.addEventListener('input', function (e) {
+    if (e.target.nodeName === 'TD') {
+        // Obtiene la fila y columna de la celda modificada
+        const row = e.target.parentElement.rowIndex - 1; // Restamos 1 para omitir la fila de encabezado
+        const col = e.target.cellIndex - 1; // Restamos 1 para omitir la columna de encabezado
+        
+        // Obtiene el total para la fila
+        const rowTotal = Array.from(e.target.parentElement.cells)
+            .slice(1, -1) // Excluye la primera y última columna
+            .map(cell => parseFloat(cell.textContent) || 0) // Convierte el contenido a número o 0
+            .reduce((acc, val) => acc + val, 0);
+        
+        // Actualiza el total en la última celda de la fila
+        const totalCell = document.getElementById(`total-${row}`);
+        totalCell.textContent = rowTotal;
     }
 });
-
-// Agrega un controlador de eventos para el botón de reset
-resetButton.addEventListener('click', () => {
-    transactions = [];
-    localStorage.removeItem('total'); // Elimina el total del almacenamiento local
-
-    // Actualiza el total
-    updateTotal();
-
-    // Actualiza la lista de ingresos
-    updateTransactionList();
-});
-
-// Llama a esta función al cargar la página para mostrar cualquier ingreso previo
-updateTransactionList();
-
-// Recupera y muestra el total almacenado en localStorage al cargar la página
-const storedTotal = localStorage.getItem('total');
-if (storedTotal !== null) {
-    totalAmount.textContent = `${storedTotal}€`;
-}
