@@ -14,7 +14,7 @@ function updateTransactions() {
 
     transactions.forEach((transaction) => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${transaction.amount}€ (${transaction.date})`;
+        listItem.textContent = `${transaction.amount}€ (${transaction.date})`; // Elimina esta línea
         transactionList.appendChild(listItem);
     });
 
