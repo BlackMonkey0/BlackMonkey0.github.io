@@ -6,7 +6,7 @@ const resetButton = document.getElementById('reset-button');
 
 // Variable para almacenar los ingresos
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-
+ 
 // Función para calcular el total
 function calculateTotal() {
     return transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
