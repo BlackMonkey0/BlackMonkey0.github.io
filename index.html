@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>AHORROS</title>
+    <title>Mi Hucha</title>
 </head>
 <body>
     <header>
-        <h1>Bienvenido</h1>
+        <h1>Mi Hucha Inteligente</h1>
     </header>
     <main>
         <section id="total">
             <h2>Total</h2>
             <p id="total-amount">0€</p>
         </section>
-        <div id="transactions">
+        <form id="transaction-form">
+            <label for="amount">Cantidad en €:</label>
+            <input type="number" id="amount" placeholder="Ingrese la cantidad">
+            <button type="submit">Añadir</button>
+        </form>
+        <section id="transactions">
             <h2>Ingresos</h2>
             <ul id="transaction-list">
                 <!-- Lista de ingresos -->
             </ul>
-            <input type="number" id="amount" placeholder="Ingrese la cantidad en €">
-            <button id="add-transaction">Añadir</button>
-            <button id="reset-button">Reiniciar</button>
-            <a href="historial.html">Ver Historial</a>
-        </div>
+        </section>
     </main>
     <footer>
-        &copy; 2023 Solé
+        &copy; 2023 Mi Hucha Inteligente
     </footer>
     <script src="script.js"></script>
 </body>
 </html>
+
