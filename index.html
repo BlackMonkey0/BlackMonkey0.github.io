@@ -16,24 +16,15 @@
                 <tr>
                     <th>Día</th>
                     <th>€</th>
-                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Genera 365 filas para los días -->
-                <!-- Puedes ajustar el número de días según lo necesites -->
-                <!-- Estas filas se generan automáticamente con JavaScript -->
+                <!-- Genera filas automáticamente con JavaScript -->
                 <!-- Agregamos el atributo 'contentEditable' para hacer la celda editable -->
-                <tr>
-                    <td>1</td>
-                    <td contentEditable="true"></td>
-                    <td contentEditable="false"></td>
-                    <td id="total-amount" colspan="2">0</td>
-                </tr>
             </tbody>
         </table>
-        <!-- Agregamos un botón para generar filas automáticamente -->
-        <button id="generate-rows">Generar Filas</button>
+        <button id="add-row">Agregar Fila</button>
+        <p>Total: <span id="total-amount">0</span> €</p>
     </main>
     <footer>
         &copy; 2023 Solé
