@@ -1,73 +1,61 @@
-/* Estilos generales del cuerpo */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #f4f4f4;
 }
 
-/* Estilo del libro */
 .book {
-  width: 60%; /* Ajusta el tamaño del libro */
-  height: 80%;
-  position: relative;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-/* Estilo de la portada con imagen */
-.cover {
-  width: 100%;
-  height: 100%;
-  background-image: url('cover-image.jpg'); /* Cambia la URL de la imagen de portada */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  margin: 20px;
 }
 
-/* Estilo del título centrado */
-.cover h1 {
-  color: #fff;
-  font-size: 36px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la visibilidad sobre la imagen */
+.page {
+  width: 80%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.page-title {
   text-align: center;
-  margin: 0;
-  z-index: 1; /* Asegura que el título quede por encima de la imagen */
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-/* Contenedor de los botones al fondo */
+.page p {
+  line-height: 1.6;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
 .button-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2; /* Los botones estarán encima del libro */
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-/* Estilos para los botones */
 .flip-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #007bff;
   color: white;
   font-size: 16px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  margin: 0 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .flip-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
