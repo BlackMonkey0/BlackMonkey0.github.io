@@ -1,10 +1,13 @@
+/* Estilo global */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  color: #333;
 }
 
+/* Contenedor principal del libro */
 .book {
   display: flex;
   flex-direction: column;
@@ -13,6 +16,7 @@ body {
   margin: 20px;
 }
 
+/* Página individual */
 .page {
   width: 80%;
   padding: 20px;
@@ -24,13 +28,16 @@ body {
   perspective: 1000px;
 }
 
+/* Títulos de las páginas */
 .page-title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 10px;
   color: #333;
+  font-weight: bold;
 }
 
+/* Estilo para el texto de las páginas */
 .page p {
   line-height: 1.6;
   font-size: 18px;
@@ -38,12 +45,14 @@ body {
   margin-bottom: 15px;
 }
 
+/* Contenedor de los botones */
 .button-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
+/* Estilo para los botones */
 .flip-button {
   background-color: #007bff;
   color: white;
@@ -56,6 +65,29 @@ body {
   transition: background-color 0.3s;
 }
 
+/* Efecto al pasar el ratón sobre los botones */
 .flip-button:hover {
   background-color: #0056b3;
+}
+
+/* Estilo de la página anterior */
+.previous-page {
+  position: relative;
+  background-color: #f0f0f0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: transform 1s ease-in-out;
+}
+
+/* Estilo de la página actual */
+.current-page {
+  position: relative;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  transition: transform 1s ease-in-out;
+}
+
+/* Efecto de animación de las páginas */
+.page.flip {
+  transform: rotateY(180deg);
 }
