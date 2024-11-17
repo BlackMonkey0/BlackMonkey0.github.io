@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>AHORROS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuento Digital</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Vincula el archivo de estilos -->
+  <script src="script.js" defer></script> <!-- Vincula el archivo de JavaScript -->
 </head>
 <body>
-    <header>
-        <h1>Bienvenido</h1>
-    </header>
-    <main>
-        <table id="spreadsheet">
-            <thead>
-                <tr>
-                    <th>Día</th>
-                    <th>€</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Genera filas automáticamente con JavaScript -->
-                <!-- Agregamos el atributo 'contentEditable' para hacer la celda editable -->
-            </tbody>
-        </table>
-        <button id="add-row">Agregar Fila</button>
-        <p>Total: <span id="total-amount">0</span> €</p>
-    </main>
-    <footer>
-        &copy; 2023 Solé
-    </footer>
-    <script src="script.js"></script>
+  <div class="book">
+    <div class="cover" id="cover">
+      <h1>NUESTRO PROPIO PARAISO</h1>
+    </div>
+  </div>
+
+  <!-- Botones al fondo -->
+  <div class="button-container">
+    <!-- Botón para Siguiente Página -->
+    <button class="flip-button" onclick="nextPage()">información</button>
+
+    <!-- Botón para retroceder página -->
+    <button class="flip-button" onclick="window.location.href='pagina1.html'">índice</button>
+  </div>
 </body>
 </html>
