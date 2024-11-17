@@ -1,48 +1,73 @@
-/* Estilos generales */
+/* Estilos generales del cuerpo */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
+/* Estilo del libro */
+.book {
+  width: 60%; /* Ajusta el tamaño del libro */
+  height: 80%;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-header h1 {
-    margin: 0;
+/* Estilo de la portada con imagen */
+.cover {
+  width: 100%;
+  height: 100%;
+  background-image: url('cover-image.jpg'); /* Cambia la URL de la imagen de portada */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+/* Estilo del título centrado */
+.cover h1 {
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la visibilidad sobre la imagen */
+  text-align: center;
+  margin: 0;
+  z-index: 1; /* Asegura que el título quede por encima de la imagen */
 }
 
-/* Estilos para la tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+/* Contenedor de los botones al fondo */
+.button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Los botones estarán encima del libro */
+  display: flex;
+  gap: 10px;
 }
 
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+/* Estilos para los botones */
+.flip-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* Estilos para el pie de página */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
+.flip-button:hover {
+  background-color: #45a049;
 }
