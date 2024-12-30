@@ -1,28 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuento Digital</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Vincula el archivo de estilos -->
-  <script src="script.js" defer></script> <!-- Vincula el archivo de JavaScript -->
-  <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Bank</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 
 </head>
 <body>
-  <div class="book">
-    <div class="cover" id="cover">
-      <h1>NUESTRO PROPIO PARAISO</h1>
+    <header>
+      <div class="header-left">MAZE BANK<br><span class="subtitle">of the Black Monke's</span></div>    
+          <div class="header-right">Saldo de la cuenta: <strong id="total">0.00</strong> €</div>
+    </header>
+    <div class="container">
+        <form id="moneyForm">
+            <label for="amount">Cantidad (+/-):</label>
+            <input type="number" id="amount" step="0.01" required>
+            <button type="submit">Añadir</button>
+        </form>
+        <button id="resetButton" class="reset-button">Resetear</button>
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Movimiento (€)</th>
+                    <th>Total (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se irá añadiendo el historial -->
+            </tbody>
+        </table>
     </div>
-  </div>
-
-  <!-- Botones al fondo -->
-  <div class="button-container">
-    <!-- Botón para Siguiente Página -->
-    <button class="flip-button" onclick="nextPage()">información</button>
-
-    <!-- Botón para retroceder página -->
-    <button class="flip-button" onclick="window.location.href='pagina1.html'">índice</button>
-  </div>
+    <script>
+      let total = parseFloat(localStorage.getItem('total')) || 0;
+      const totalElement = document.getElementById('total');
+      const historyTable = document.getElementById('historyTable').querySelector('tbody');
+      const moneyForm = document.getElementById('moneyForm');
+      const resetButton = document.getElementById('resetButton');
+  
+      // Cargar el total acumulado y el historial
+      totalElement.textContent = total.toFixed(2);
+      historyTable.innerHTML = localStorage.getItem('history') || '';
+  
+      // Evento para manejar el formulario
+      moneyForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+  
+          const amount = parseFloat(document.getElementById('amount').value);
+          if (isNaN(amount)) return;
+  
+          total += amount;
+          totalElement.textContent = total.toFixed(2);
+  
+          const row = document.createElement('tr');
+          const date = new Date().toLocaleDateString();
+          const formattedAmount = amount.toFixed(2) + ';'; // Agregar punto y coma al final
+          const formattedTotal = total.toFixed(2);
+  
+          // Crear fila de historial
+          row.innerHTML = `
+              <td>${date}</td>
+              <td>${formattedAmount}</td>
+              <td>${formattedTotal}</td>
+          `;
+  
+          historyTable.appendChild(row);
+  
+          // Guardar datos en localStorage
+          localStorage.setItem('total', total.toFixed(2));
+          localStorage.setItem('history', historyTable.innerHTML);
+  
+          moneyForm.reset();
+      });
+  
+      // Evento para manejar el reseteo
+      resetButton.addEventListener('click', function () {
+          if (confirm("¿Estás seguro de que quieres resetear la hucha?")) {
+              total = 0;
+              totalElement.textContent = total.toFixed(2);
+              historyTable.innerHTML = '';
+              localStorage.removeItem('total');
+              localStorage.removeItem('history');
+          }
+      });
+  </script>
+  
 </body>
 </html>
