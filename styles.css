@@ -157,6 +157,20 @@ input, button {
   text-shadow: 0 0 8px #ffffff, 0 0 12px #999999;
 }
 
+/* Reloj en la parte inferior izquierda */
+.clock {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 18px;
+  background-color: #222222;
+  color: #00ffcc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #33ffff;
+  text-shadow: 0 0 8px #00ffcc, 0 0 12px #66ffff, 0 0 16px #99ffff;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
