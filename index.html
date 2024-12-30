@@ -6,13 +6,13 @@
     <title>Maze Bank</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
-
 </head>
 <body>
     <header>
       <div class="header-left">MAZE BANK<br><span class="subtitle">of the Black Monkey's</span></div>    
-          <div class="header-right">Saldo de la cuenta: <strong id="total">0.00</strong> €</div>
+      <div class="header-right">Saldo de la cuenta: <strong id="total">0.00</strong> €</div>
     </header>
+
     <div class="container">
         <form id="moneyForm">
             <label for="amount">Cantidad (+/-):</label>
@@ -33,6 +33,10 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Reloj en la parte inferior izquierda -->
+    <div id="clock" class="clock"></div>
+
     <script>
       let total = parseFloat(localStorage.getItem('total')) || 0;
       const totalElement = document.getElementById('total');
@@ -85,7 +89,25 @@
               localStorage.removeItem('history');
           }
       });
-  </script>
-  
+
+      // Función para actualizar la hora y fecha
+      function updateClock() {
+          const clockElement = document.getElementById('clock');
+          const now = new Date();
+          const date = now.toLocaleDateString();
+          const time = now.toLocaleTimeString();
+          
+          clockElement.innerHTML = `
+              <div>${time}</div>
+              <span>${date}</span>
+          `;
+      }
+
+      // Actualizamos la hora cada segundo
+      setInterval(updateClock, 1000);
+
+      // Inicializar el reloj cuando la página carga
+      updateClock();
+    </script>
 </body>
 </html>
