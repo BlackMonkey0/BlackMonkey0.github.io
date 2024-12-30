@@ -1,93 +1,177 @@
-/* Estilo global */
+/* Estilo general del cuerpo */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  color: #ffffff;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  overflow-x: hidden;
 }
 
-/* Contenedor principal del libro */
-.book {
+/* Estilo del encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #141414;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-bottom: 2px solid #ff0000;
+  box-shadow: 0 0 15px #ff0000;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff3333, 0 0 30px #ff6666;
+}
+
+.subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: #d1d1d1;
+  text-transform: capitalize;
+  position: absolute;
+  top: 24px; /* Ajusta debajo de MAZE BANK */
+  left: 0;
+  text-shadow: 0 0 8px #ffffff, 0 0 12px #cccccc;
+}
+
+.header-right {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #66ffff, 0 0 30px #99ffff;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #1a1a1a;
+  padding: 20px;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px #ff0000, 0px 0px 40px #ff3333;
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #ff0000;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #ff0000, 0 0 30px #ff3333, 0 0 45px #ff6666;
+}
+
+/* Formulario */
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-}
-
-/* Página individual */
-.page {
-  width: 80%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 10px;
   margin-bottom: 20px;
-  transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
-/* Títulos de las páginas */
-.page-title {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Estilo para el texto de las páginas */
-.page p {
-  line-height: 1.6;
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 15px;
-}
-
-/* Contenedor de los botones */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* Estilo para los botones */
-.flip-button {
-  background-color: #007bff;
-  color: white;
+label {
   font-size: 16px;
-  padding: 10px 20px;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #cccccc;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #555555;
+  border-radius: 5px;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #cccccc;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ff0000;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
-  margin: 0 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px #ff3333, 0 0 20px #ff6666;
 }
 
-/* Efecto al pasar el ratón sobre los botones */
-.flip-button:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 15px #ff6666, 0 0 30px #ff9999;
 }
 
-/* Estilo de la página anterior */
-.previous-page {
-  position: relative;
-  background-color: #f0f0f0;
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-  transition: transform 1s ease-in-out;
+.reset-button {
+  background-color: #00ccff;
+  margin-top: 10px;
+  box-shadow: 0 0 10px #00ccff, 0 0 20px #33ffff;
 }
 
-/* Estilo de la página actual */
-.current-page {
-  position: relative;
-  transform: rotateY(0deg);
-  backface-visibility: hidden;
-  transition: transform 1s ease-in-out;
+.reset-button:hover {
+  background-color: #0099cc;
+  box-shadow: 0 0 15px #33ffff, 0 0 30px #66ffff;
 }
 
-/* Efecto de animación de las páginas */
-.page.flip {
-  transform: rotateY(180deg);
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 0 15px #333333;
+}
+
+th, td {
+  border: 1px solid #555555;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #cccccc;
+}
+
+th {
+  background-color: #222222;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #cccccc;
+}
+
+td {
+  background-color: #141414;
+}
+
+/* Efectos neón en general */
+.container p, form, table {
+  text-shadow: 0 0 8px #ffffff, 0 0 12px #999999;
+}
+
+input, button {
+  text-shadow: 0 0 8px #ffffff, 0 0 12px #999999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  .header-left {
+      font-size: 20px;
+  }
+
+  .header-right {
+      font-size: 16px;
+  }
 }
