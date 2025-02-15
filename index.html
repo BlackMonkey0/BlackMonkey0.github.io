@@ -3,111 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Bank</title>
+    <title>Diapositivas Románticas</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
-    <header>
-      <div class="header-left">MAZE BANK<br><span class="subtitle">of the Black Monkey's</span></div>    
-      <div class="header-right">Saldo de la cuenta: <strong id="total">0.00</strong> €</div>
-    </header>
-
-    <div class="container">
-        <form id="moneyForm">
-            <label for="amount">Cantidad (+/-):</label>
-            <input type="number" id="amount" step="0.01" required>
-            <button type="submit">Añadir</button>
-        </form>
-        <button id="resetButton" class="reset-button">Resetear</button>
-        <table id="historyTable">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Movimiento (€)</th>
-                    <th>Total (€)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Aquí se irá añadiendo el historial -->
-            </tbody>
-        </table>
+    <div class="slider">
+        <div class="slide active">
+            <div class="polaroid">
+                <img src="primer desayuno.jpeg" alt="Nuestro primer abrazo...">
+                <div class="caption">Nuestro primer desayuno...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (1).jpeg" alt="Un día inolvidable...">
+                <div class="caption">Un día inolvidable...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (2).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Un dia de risas y amor...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (3).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">pequeñas muestras de amor...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (5).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Un dia que no quedara en el olvido ...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (6).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Un beso que sella una vez mas nuestro amor...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (11).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Un arcoiris tan especial como tu...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (12).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Un dia fantastico con la persona correcta...</div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="polaroid">
+                <img src="WhatsApp Image 2025-02-15 at 22.31.11 (13).jpeg" alt="Nuestro pequeño paraíso...">
+                <div class="caption">Besos y pelos de locos...</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav prev" onclick="changeSlide(-1)" aria-label="Anterior">&#10094;</button>
+            <button class="nav next" onclick="changeSlide(1)" aria-label="Siguiente">&#10095;</button>
+        </div>
     </div>
-
-    <!-- Reloj en la parte inferior izquierda -->
-    <div id="clock" class="clock"></div>
-
-    <script>
-      let total = parseFloat(localStorage.getItem('total')) || 0;
-      const totalElement = document.getElementById('total');
-      const historyTable = document.getElementById('historyTable').querySelector('tbody');
-      const moneyForm = document.getElementById('moneyForm');
-      const resetButton = document.getElementById('resetButton');
-  
-      // Cargar el total acumulado y el historial
-      totalElement.textContent = total.toFixed(2);
-      historyTable.innerHTML = localStorage.getItem('history') || '';
-  
-      // Evento para manejar el formulario
-      moneyForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-  
-          const amount = parseFloat(document.getElementById('amount').value);
-          if (isNaN(amount)) return;
-  
-          total += amount;
-          totalElement.textContent = total.toFixed(2);
-  
-          const row = document.createElement('tr');
-          const date = new Date().toLocaleDateString();
-          const formattedAmount = amount.toFixed(2) + ';'; // Agregar punto y coma al final
-          const formattedTotal = total.toFixed(2);
-  
-          // Crear fila de historial
-          row.innerHTML = `
-              <td>${date}</td>
-              <td>${formattedAmount}</td>
-              <td>${formattedTotal}</td>
-          `;
-  
-          historyTable.appendChild(row);
-  
-          // Guardar datos en localStorage
-          localStorage.setItem('total', total.toFixed(2));
-          localStorage.setItem('history', historyTable.innerHTML);
-  
-          moneyForm.reset();
-      });
-  
-      // Evento para manejar el reseteo
-      resetButton.addEventListener('click', function () {
-          if (confirm("¿Estás seguro de que quieres resetear la hucha?")) {
-              total = 0;
-              totalElement.textContent = total.toFixed(2);
-              historyTable.innerHTML = '';
-              localStorage.removeItem('total');
-              localStorage.removeItem('history');
-          }
-      });
-
-      // Función para actualizar la hora y fecha
-      function updateClock() {
-          const clockElement = document.getElementById('clock');
-          const now = new Date();
-          const date = now.toLocaleDateString();
-          const time = now.toLocaleTimeString();
-          
-          clockElement.innerHTML = `
-              <div>${time}</div>
-              <span>${date}</span>
-          `;
-      }
-
-      // Actualizamos la hora cada segundo
-      setInterval(updateClock, 1000);
-
-      // Inicializar el reloj cuando la página carga
-      updateClock();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
