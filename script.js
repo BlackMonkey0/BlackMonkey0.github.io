@@ -1,30 +1,20 @@
-let total = 0;
-const totalElement = document.getElementById('total');
-const historyTable = document.getElementById('historyTable').querySelector('tbody');
-const moneyForm = document.getElementById('moneyForm');
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
 
-moneyForm.addEventListener('submit', function(e) {
-  e.preventDefault();
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+}
 
-  // Obtener cantidad ingresada
-  const amount = parseFloat(document.getElementById('amount').value);
+function changeSlide(direction) {
+    currentSlide += direction;
+    if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    } else if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+    showSlide(currentSlide);
+}
 
-  if (isNaN(amount)) return;
-
-  // Actualizar total
-  total += amount;
-  totalElement.textContent = total.toFixed(2);
-
-  // Registrar en el historial
-  const row = document.createElement('tr');
-  const date = new Date().toLocaleDateString();
-  row.innerHTML = `
-    <td>${date}</td>
-    <td>${amount.toFixed(2)}</td>
-    <td>${total.toFixed(2)}</td>
-  `;
-  historyTable.appendChild(row);
-
-  // Limpiar el formulario
-  moneyForm.reset();
-});
+showSlide(currentSlide);
